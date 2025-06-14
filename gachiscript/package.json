@@ -1,0 +1,26 @@
+{
+  "name": "gachiscript",
+  "version": "1.0.0",
+  "description": "GachiScript: TypeScript с гачи-сленгом",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "node test/test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Kr1tX12/GachiScript.git",
+    "directory": "gachiscript"
+  },
+  "keywords": [
+    "typescript",
+    "gachi",
+    "language",
+    "parser",
+    "esprima"
+  ],
+  "author": "Ты, создатель Гачи",
+  "license": "MIT",
+  "dependencies": {
+    "esprima": "^4.0.1"
+  }
+}

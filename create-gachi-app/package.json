@@ -1,0 +1,11 @@
+{
+  "name": "create-gachi-app",
+  "version": "1.0.0",
+  "description": "Создаёт next.js проект с GachiScript",
+  "bin": {
+    "create-gachi-app": "./index.js"
+  },
+  "keywords": ["gachiscript", "next.js", "npx", "create"],
+  "author": "Kr1tX12",
+  "license": "MIT"
+}
