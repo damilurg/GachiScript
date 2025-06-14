@@ -7,7 +7,10 @@ const path = require('path');
 const projectName = process.argv[2] || 'gachi-app';
 const templateDir = path.join(__dirname, 'template');
 
-fs.cpSync(templateDir, projectName, { recursive: true });
+const targetPath = path.resolve(process.cwd(), projectName);
+
+fs.cpSync(templateDir, targetPath, { recursive: true });
+
 
 console.log('📦 Устанавливаем зависящие жопы...');
 execSync('npm install', { cwd: projectName, stdio: 'inherit' });

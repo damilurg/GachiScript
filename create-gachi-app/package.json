@@ -5,7 +5,12 @@
   "bin": {
     "create-gachi-app": "./index.js"
   },
-  "keywords": ["gachiscript", "next.js", "npx", "create"],
+  "keywords": [
+    "gachiscript",
+    "next.js",
+    "npx",
+    "create"
+  ],
   "author": "Kr1tX12",
   "license": "MIT"
 }
