@@ -1,0 +1,51 @@
+{
+  "name": "gachiscript",
+  "version": "0.0.2",
+  "description": "🔥 The core engine of GachiScript – DOMination starts here",
+  "author": "damilurg",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
+  },
+  "scripts": {
+    "dev": "tsup src/index.ts --watch --format esm",
+    "build": "tsup src/index.ts --dts --format esm",
+    "lint": "eslint . --ext .ts",
+    "prepublishOnly": "npm run build"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "keywords": [
+    "gachiscript",
+    "gachi-core",
+    "aniki",
+    "typescript",
+    "transpiler",
+    "parser",
+    "dsl",
+    "frontend",
+    "react",
+    "angular",
+    "vue"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/damilurg/GachiScript.git"
+  },
+  "bin": {
+    "gachi": "dist/cli.js"
+  },
+  "devDependencies": {
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "tslib": "^2.8.1"
+  }
+}
