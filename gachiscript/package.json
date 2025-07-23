@@ -1,10 +1,26 @@
 {
-  "name": "gachiscript",
-  "version": "0.0.1",
-  "description": "GachiScript: TypeScript с гачи-сленгом",
-  "main": "src/index.js",
+  "name": "gachiscript-platform",
+  "version": "1.0.0",
+  "description": "GachiScript Platform: Full TypeScript/JavaScript syntactic overlay with Gachi culture phrases",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "examples/*"
+  ],
   "scripts": {
-    "test": "node test/test.js"
+    "bootstrap": "npm install && npm run build",
+    "build": "npm run build --workspaces --if-present",
+    "build:dictionary": "npm run build -w packages/gachi-dictionary",
+    "build:transpiler": "npm run build -w packages/gachi-transpiler", 
+    "build:gachitest": "npm run build -w packages/gachitest",
+    "test": "npm run test --workspaces --if-present",
+    "test:dictionary": "npm run test -w packages/gachi-dictionary",
+    "test:transpiler": "npm run test -w packages/gachi-transpiler",
+    "test:gachitest": "npm run test -w packages/gachitest",
+    "dev": "npm run dev --workspaces --if-present",
+    "lint": "eslint packages/*/src/**/*.{ts,js} --fix",
+    "clean": "npm run clean --workspaces --if-present && rm -rf node_modules",
+    "demo": "npm run build && cd examples/react-gachi-app && npm run build:gachi"
   },
   "repository": {
     "type": "git",
@@ -13,14 +29,37 @@
   },
   "keywords": [
     "typescript",
+    "javascript", 
     "gachi",
     "language",
-    "parser",
-    "gachiscript"
+    "transpiler",
+    "ide",
+    "testing",
+    "billy-herrington",
+    "gachiscript",
+    "ast",
+    "jest",
+    "framework"
   ],
   "author": "damilurg",
   "license": "MIT",
-  "dependencies": {
-    "esprima": "^4.0.1"
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "eslint": "^8.0.0",
+    "typescript": "^5.0.0",
+    "jest": "^29.0.0",
+    "@types/jest": "^29.0.0",
+    "ts-jest": "^29.0.0",
+    "lerna": "^7.0.0",
+    "concurrently": "^8.0.0"
+  },
+  "engines": {
+    "node": ">=16.0.0",
+    "npm": ">=8.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
