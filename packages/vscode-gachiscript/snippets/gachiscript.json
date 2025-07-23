@@ -1,0 +1,198 @@
+{
+  "Tight Variable Declaration": {
+    "prefix": "tight",
+    "body": ["tight ${1:name} = ${2:value};"],
+    "description": "🔥 Create a tight (const) variable - RIGHT VERSION!"
+  },
+  
+  "Flexible Variable Declaration": {
+    "prefix": "flexible",
+    "body": ["flexible ${1:name} = ${2:value};"],
+    "description": "💪 Create a flexible (let) variable"
+  },
+  
+  "Performance Function": {
+    "prefix": "performance",
+    "body": [
+      "performance ${1:name}(${2:parameters}) {",
+      "  ${3:// DEEP DARK FANTASY}",
+      "  deliver ${4:result};",
+      "}"
+    ],
+    "description": "🎭 Create a performance (function)"
+  },
+  
+  "Dungeon Class": {
+    "prefix": "dungeon",
+    "body": [
+      "dungeon ${1:ClassName} {",
+      "  ${2:// Dungeon properties}",
+      "  ",
+      "  birth(${3:parameters}) {",
+      "    ${4:// Constructor logic}",
+      "  }",
+      "  ",
+      "  performance ${5:methodName}() {",
+      "    ${6:// Method implementation}",
+      "  }",
+      "}"
+    ],
+    "description": "🏰 Create a dungeon (class)"
+  },
+  
+  "When Hard Condition": {
+    "prefix": "whenHard",
+    "body": [
+      "whenHard (${1:condition}) {",
+      "  ${2:// Action when true}",
+      "} otherwise {",
+      "  ${3:// Action when false}",
+      "}"
+    ],
+    "description": "🔥 Create a whenHard (if) statement"
+  },
+  
+  "Delayed Performance": {
+    "prefix": "delayed",
+    "body": [
+      "delayed performance ${1:name}(${2:parameters}) {",
+      "  ${3:// Async logic}",
+      "  tight result = anticipate ${4:promise};",
+      "  deliver result;",
+      "}"
+    ],
+    "description": "⏰ Create a delayed (async) performance"
+  },
+  
+  "React Component": {
+    "prefix": "gachi-component",
+    "body": [
+      "summon React, { manageTightness, onDomination } outta 'react';",
+      "",
+      "essence ${1:ComponentName}Gifts = {",
+      "  ${2:// Props definition}",
+      "};",
+      "",
+      "performance ${1:ComponentName}(gifts: ${1:ComponentName}Gifts) {",
+      "  tight [${3:state}, adjust${3/(.*)/${3:/capitalize}/}] = manageTightness(${4:initialValue});",
+      "",
+      "  onDomination(() => {",
+      "    ${5:// Effect logic}",
+      "  }, []);",
+      "",
+      "  deliver (",
+      "    <div className=\"${1/(.*)/${1:/downcase}/}\">",
+      "      <h1>🔥 ${1:ComponentName} 🔥</h1>",
+      "      ${6:// JSX content}",
+      "    </div>",
+      "  );",
+      "}",
+      "",
+      "release master ${1:ComponentName};"
+    ],
+    "description": "⚛️ Create a React component in GachiScript"
+  },
+  
+  "Test Suite": {
+    "prefix": "gachi-test",
+    "body": [
+      "describeHole('${1:TestSuite}', () => {",
+      "  flexible ${2:variable};",
+      "",
+      "  beforeDomination(() => {",
+      "    ${3:// Setup before each test}",
+      "  });",
+      "",
+      "  afterCleanup(() => {",
+      "    ${4:// Cleanup after each test}",
+      "  });",
+      "",
+      "  itMuscle('${5:should do something}', () => {",
+      "    ${6:// Test implementation}",
+      "    expectTight(${7:actual}).toBeTight();",
+      "  });",
+      "});"
+    ],
+    "description": "🧪 Create a GachiTest test suite"
+  },
+  
+  "Billy Quote Comment": {
+    "prefix": "billy",
+    "body": ["// ${1|RIGHT VERSION!,DEEP DARK FANTASY,FISTING IS 300 BUCKS,BOY NEXT DOOR,LEATHER CLUB,PERFORMANCE,COLLEGE BOY,DADDY,ANIKI|}"],
+    "description": "💬 Add a Billy Herrington quote comment"
+  },
+  
+  "Summon Import": {
+    "prefix": "summon",
+    "body": ["summon ${1:imports} outta '${2:module}';"],
+    "description": "📦 Import (summon) modules"
+  },
+  
+  "Release Export": {
+    "prefix": "release",
+    "body": ["release ${1|master,|} ${2:exportName};"],
+    "description": "🚀 Export (release) modules"
+  },
+  
+  "Dungeon Master Hook": {
+    "prefix": "use-dungeon",
+    "body": [
+      "tight [${1:state}, adjust${1/(.*)/${1:/capitalize}/}] = manageTightness(${2:initialValue});",
+      "",
+      "onDomination(() => {",
+      "  ${3:// Effect implementation}",
+      "}, [${4:dependencies}]);"
+    ],
+    "description": "🏰 Create React hooks in GachiScript style"
+  },
+  
+  "Error Handling": {
+    "prefix": "gachi-error",
+    "body": [
+      "attempt {",
+      "  ${1:// Code that might fail}",
+      "} grab (error) {",
+      "  logger.error('💀 WRONG VERSION!', error);",
+      "  ${2:// Error handling}",
+      "} cleanup {",
+      "  ${3:// Cleanup code}",
+      "}"
+    ],
+    "description": "💀 Error handling with try-catch"
+  },
+  
+  "Switch Decision": {
+    "prefix": "decide",
+    "body": [
+      "decide (${1:variable}) {",
+      "  scenario '${2:case1}':",
+      "    ${3:// Action for case1}",
+      "    escape;",
+      "  scenario '${4:case2}':",
+      "    ${5:// Action for case2}",
+      "    escape;",
+      "  master:",
+      "    ${6:// Default action}",
+      "    escape;",
+      "}"
+    ],
+    "description": "🎯 Switch statement (decide)"
+  },
+  
+  "Collection Operations": {
+    "prefix": "gachi-array",
+    "body": [
+      "tight ${1:collection} = [${2:items}];",
+      "",
+      "// Transform each item",
+      "tight transformed = ${1:collection}.transform(item => ${3:transformation});",
+      "",
+      "// Select items that match condition", 
+      "tight selected = ${1:collection}.select(item => ${4:condition});",
+      "",
+      "// Find specific item",
+      "tight found = ${1:collection}.locate(item => ${5:condition});"
+    ],
+    "description": "📚 Array operations in GachiScript"
+  }
+}

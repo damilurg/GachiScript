@@ -1,0 +1,29 @@
+{
+  "name": "react-gachi-app",
+  "version": "1.0.0",
+  "description": "🔥 React app with GachiScript - DEEP DARK FANTASY!",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "gachi build src --framework react && vite build",
+    "preview": "vite preview",
+    "gachi:build": "gachi build src --framework react",
+    "gachi:watch": "gachi build src --framework react --watch",
+    "test": "gachitest test",
+    "test:watch": "gachitest test --watch"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@gachiscript/dictionary": "^1.0.0",
+    "@gachiscript/transpiler": "^1.0.0",
+    "@gachiscript/gachitest": "^1.0.0",
+    "@types/react": "^18.2.0",
+    "@types/react-dom": "^18.2.0",
+    "@vitejs/plugin-react": "^4.0.0",
+    "typescript": "^5.8.3",
+    "vite": "^5.0.0"
+  }
+}

@@ -1,0 +1,162 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "GachiScript",
+  "scopeName": "source.gachiscript",
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#strings"
+    },
+    {
+      "include": "#numbers"
+    },
+    {
+      "include": "#keywords"
+    },
+    {
+      "include": "#operators"
+    },
+    {
+      "include": "#types"
+    },
+    {
+      "include": "#methods"
+    },
+    {
+      "include": "#gachi-quotes"
+    }
+  ],
+  "repository": {
+    "comments": {
+      "patterns": [
+        {
+          "name": "comment.line.double-slash.gachiscript",
+          "begin": "//",
+          "end": "$",
+          "patterns": [
+            {
+              "name": "markup.bold.gachiscript",
+              "match": "(DEEP DARK COMMENT|RIGHT VERSION|WRONG VERSION)"
+            }
+          ]
+        },
+        {
+          "name": "comment.block.gachiscript",
+          "begin": "/\\*",
+          "end": "\\*/",
+          "patterns": [
+            {
+              "name": "markup.bold.gachiscript",
+              "match": "(FISTING IS 300 BUCKS|RIGHT VERSION)"
+            }
+          ]
+        }
+      ]
+    },
+    "strings": {
+      "patterns": [
+        {
+          "name": "string.quoted.double.gachiscript",
+          "begin": "\"",
+          "end": "\"",
+          "patterns": [
+            {
+              "name": "constant.character.escape.gachiscript",
+              "match": "\\\\."
+            }
+          ]
+        },
+        {
+          "name": "string.quoted.single.gachiscript",
+          "begin": "'",
+          "end": "'",
+          "patterns": [
+            {
+              "name": "constant.character.escape.gachiscript",
+              "match": "\\\\."
+            }
+          ]
+        },
+        {
+          "name": "string.template.gachiscript",
+          "begin": "`",
+          "end": "`",
+          "patterns": [
+            {
+              "name": "meta.embedded.expression.gachiscript",
+              "begin": "\\$\\{",
+              "end": "\\}",
+              "patterns": [
+                {
+                  "include": "$self"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    "numbers": {
+      "patterns": [
+        {
+          "name": "constant.numeric.gachiscript",
+          "match": "\\b\\d+(\\.\\d+)?([eE][+-]?\\d+)?\\b"
+        }
+      ]
+    },
+    "keywords": {
+      "patterns": [
+        {
+          "name": "keyword.control.gachiscript",
+          "match": "\\b(tight|flexible|loose|performance|dungeon|contract|essence|catalog|domain|package|summon|release|outta|master|aka|inherits|fulfills|exposed|hidden|guarded|permanent|concept|untouchable|delayed|anticipate|deliver|surrender|slam|attempt|grab|cleanup|whenHard|otherwise|decide|scenario|escape|proceed|repeat|during|perform|within|from|fresh|destroy|self|daddy|void|mystery|right|wrong|essence_of|member_of)\\b"
+        }
+      ]
+    },
+    "operators": {
+      "patterns": [
+        {
+          "name": "keyword.operator.comparison.gachiscript",
+          "match": "\\b(exactlyLike|totallyNot|similar|different|atleastAs|atmostAs|bigger|smaller)\\b"
+        },
+        {
+          "name": "keyword.operator.logical.gachiscript",
+          "match": "\\b(and|or|not)\\b"
+        },
+        {
+          "name": "keyword.operator.arithmetic.gachiscript",
+          "match": "\\b(pump|drain|grow|shrink|multiply|divide|modulo|power)\\b"
+        },
+        {
+          "name": "keyword.operator.other.gachiscript",
+          "match": "\\b(maybe|fallback|spread)\\b"
+        }
+      ]
+    },
+    "types": {
+      "patterns": [
+        {
+          "name": "storage.type.gachiscript",
+          "match": "\\b(verse|count|flag|structure|collection|wild|mystery|impossible|empty|massive|token|moment|commitment|failure|pattern|dictionary|unique_collection|weak_dictionary|weak_collection)\\b"
+        }
+      ]
+    },
+    "methods": {
+      "patterns": [
+        {
+          "name": "entity.name.function.gachiscript",
+          "match": "\\b(insert|extract|removeFirst|insertFirst|cutPart|modify|combine|unite|separate|findPosition|contains|select|transform|accumulate|iterate|locate|anyMatch|allMatch|arrange|flip|size|stringify|getValue|owns|invoke|execute|attach)\\b"
+        }
+      ]
+    },
+    "gachi-quotes": {
+      "patterns": [
+        {
+          "name": "string.quoted.other.gachi-quote.gachiscript",
+          "match": "\\b(RIGHT VERSION|DEEP DARK FANTASY|FISTING IS 300 BUCKS|BOY NEXT DOOR|LEATHER CLUB|PERFORMANCE|COLLEGE BOY|DADDY|ANIKI|STICK YOUR FINGER IN MY ASS|DUNGEON MASTER|COME ON MAN|GET YOUR ASS BACK HERE|OH SHIT I'M SORRY|FUCKING SLAVES GET YOUR ASS BACK HERE|THANK YOU SIR|MAY I HAVE ANOTHER|SUCTION|NICE BIKE)\\b"
+        }
+      ]
+    }
+  }
+}

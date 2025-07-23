@@ -1,23 +1,22 @@
 {
-  "name": "gachiscript",
-  "version": "0.0.2",
-  "description": "🔥 The core engine of GachiScript – DOMination starts here",
+  "name": "gachiscript-platform",
+  "version": "1.0.0",
+  "description": "🔥 GachiScript Platform - The ultimate DOMination toolkit for TypeScript/JavaScript",
   "author": "damilurg",
   "license": "MIT",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
   "type": "module",
-  "exports": {
-    ".": {
-      "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
-    }
-  },
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
   "scripts": {
-    "dev": "tsup src/index.ts --watch --format esm",
-    "build": "tsup src/index.ts --dts --format esm",
-    "lint": "eslint . --ext .ts",
-    "prepublishOnly": "npm run build"
+    "dev": "turbo dev",
+    "build": "turbo build",
+    "test": "turbo test",
+    "lint": "turbo lint",
+    "clean": "turbo clean",
+    "gachi": "node packages/gachi-transpiler/dist/cli.js",
+    "gachitest": "node packages/gachitest/dist/cli.js"
   },
   "engines": {
     "node": ">=18"
@@ -33,17 +32,21 @@
     "frontend",
     "react",
     "angular",
-    "vue"
+    "vue",
+    "billy-herrington",
+    "right-version"
   ],
   "repository": {
     "type": "git",
     "url": "https://github.com/damilurg/GachiScript.git"
   },
-  "bin": {
-    "gachi": "dist/cli.js"
-  },
   "devDependencies": {
-    "typescript": "^5.8.3"
+    "@types/node": "^20.10.0",
+    "typescript": "^5.8.3",
+    "turbo": "^1.11.0",
+    "eslint": "^8.55.0",
+    "@typescript-eslint/eslint-plugin": "^6.12.0",
+    "@typescript-eslint/parser": "^6.12.0"
   },
   "dependencies": {
     "tslib": "^2.8.1"

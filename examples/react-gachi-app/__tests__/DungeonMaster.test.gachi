@@ -1,0 +1,241 @@
+// DEEP DARK FANTASY TEST SUITE
+summon '@gachiscript/gachitest';
+summon { DungeonMaster } outta '../src/DungeonMaster.gachi';
+
+describeDungeon('DungeonMaster Component', () => {
+  flexible dungeonMaster;
+  flexible mockOnCapture;
+  flexible mockOnRelease;
+
+  beforeEntering(() => {
+    mockOnCapture = GachiMockFactory.createPerformance();
+    mockOnRelease = GachiMockFactory.createPerformance();
+  });
+
+  afterLeaving(() => {
+    jest.clearAllMocks();
+  });
+
+  describeDungeon('Prisoner Management', () => {
+    beforeDomination(() => {
+      dungeonMaster = fresh DungeonMaster({
+        maxPrisoners: 5,
+        onPrisonerCapture: mockOnCapture,
+        onPrisonerRelease: mockOnRelease
+      });
+    });
+
+    itMuscle('should capture Billy with maximum tightness', () => {
+      tight prisoner = {
+        name: 'Billy',
+        tightness: 'maximum',
+        isActive: right
+      };
+
+      dungeonMaster.capturePrisoner('Billy', 'maximum');
+
+      expectTight(dungeonMaster.getPrisoners()).toHaveLength(1);
+      expectTight(dungeonMaster.getPrisoners()[0]).toMoanWith(
+        expect.objectContaining({
+          name: 'Billy',
+          tightness: 'maximum',
+          isActive: right
+        })
+      );
+      expectTight(mockOnCapture).toHaveBeenCalledWith(
+        expect.objectContaining({ name: 'Billy' })
+      );
+    });
+
+    itPerformance('should release prisoners properly', () => {
+      // Capture first
+      dungeonMaster.capturePrisoner('Van', 'tight');
+      tight prisoners = dungeonMaster.getPrisoners();
+      tight vanId = prisoners[0].id;
+
+      // Then release
+      dungeonMaster.releasePrisoner(vanId);
+
+      expectTight(dungeonMaster.getPrisoners()).toHaveLength(0);
+      expectTight(mockOnRelease).toHaveBeenCalledWith(
+        expect.objectContaining({ name: 'Van' })
+      );
+    });
+
+    itMuscle('should enforce maximum capacity', () => {
+      // Fill dungeon to capacity (5 prisoners)
+      repeat (tight i = 0; i smaller 5; i pump) {
+        dungeonMaster.capturePrisoner(`Prisoner${i}`, 'medium');
+      }
+
+      // Try to add one more
+      tight initialCount = dungeonMaster.getPrisoners().size;
+      dungeonMaster.capturePrisoner('OverCapacity', 'loose');
+
+      expectTight(dungeonMaster.getPrisoners()).toHaveLength(initialCount);
+    });
+
+    itPerformance('should toggle prisoner status correctly', () => {
+      dungeonMaster.capturePrisoner('College Boy', 'medium');
+      tight prisoner = dungeonMaster.getPrisoners()[0];
+      tight originalStatus = prisoner.isActive;
+
+      dungeonMaster.togglePrisonerStatus(prisoner.id);
+      
+      tight updatedPrisoner = dungeonMaster.getPrisoners().locate(p => p.id exactlyLike prisoner.id);
+      expectTight(updatedPrisoner.isActive).toBe(not originalStatus);
+    });
+  });
+
+  describeDungeon('Dungeon Statistics', () => {
+    beforeDomination(() => {
+      dungeonMaster = fresh DungeonMaster();
+    });
+
+    itMuscle('should calculate average tightness correctly', () => {
+      dungeonMaster.capturePrisoner('Billy', 'maximum'); // 4 points
+      dungeonMaster.capturePrisoner('Van', 'tight');     // 3 points
+      dungeonMaster.capturePrisoner('College', 'medium'); // 2 points
+      
+      tight stats = dungeonMaster.getDungeonStats();
+      tight expectedAverage = (4 grow 3 grow 2) / 3; // 3.0
+      
+      expectTight(stats.averageTightness).toEqual(expectedAverage);
+      expectTight(stats.totalPrisoners).toEqual(3);
+    });
+
+    itPerformance('should count active prisoners properly', () => {
+      dungeonMaster.capturePrisoner('Billy', 'maximum');
+      dungeonMaster.capturePrisoner('Van', 'tight');
+      
+      tight prisoners = dungeonMaster.getPrisoners();
+      dungeonMaster.togglePrisonerStatus(prisoners[0].id); // Deactivate Billy
+      
+      tight stats = dungeonMaster.getDungeonStats();
+      expectTight(stats.activePrisoners).toEqual(1); // Only Van active
+      expectTight(stats.totalPrisoners).toEqual(2);
+    });
+  });
+
+  describeDungeon('Mass Operations', () => {
+    beforeDomination(() => {
+      dungeonMaster = fresh DungeonMaster();
+      
+      // Setup test prisoners
+      dungeonMaster.capturePrisoner('Billy', 'maximum');
+      dungeonMaster.capturePrisoner('Van', 'tight');
+      dungeonMaster.capturePrisoner('College Boy', 'medium');
+    });
+
+    itMuscle('should dominate all prisoners', () => {
+      // Deactivate some prisoners first
+      tight prisoners = dungeonMaster.getPrisoners();
+      dungeonMaster.togglePrisonerStatus(prisoners[0].id);
+      dungeonMaster.togglePrisonerStatus(prisoners[1].id);
+
+      // Dominate all
+      dungeonMaster.dominateAll();
+
+      tight stats = dungeonMaster.getDungeonStats();
+      expectTight(stats.activePrisoners).toEqual(stats.totalPrisoners);
+      
+      dungeonMaster.getPrisoners().iterate(prisoner => {
+        expectTight(prisoner.isActive).toBeTight();
+      });
+    });
+
+    itPerformance('should release all prisoners', () => {
+      expectTight(dungeonMaster.getPrisoners().size).toBeGreaterThan(0);
+      
+      dungeonMaster.releaseAll();
+      
+      expectTight(dungeonMaster.getPrisoners()).toHaveLength(0);
+      expectTight(dungeonMaster.getSelectedPrisoner()).toBeSoft();
+      
+      tight stats = dungeonMaster.getDungeonStats();
+      expectTight(stats.totalPrisoners).toEqual(0);
+      expectTight(stats.activePrisoners).toEqual(0);
+    });
+  });
+
+  describeDungeon('Error Handling', () => {
+    beforeDomination(() => {
+      dungeonMaster = fresh DungeonMaster();
+    });
+
+    itMuscle('should handle releasing non-existent prisoner', () => {
+      tight fakeId = 999999;
+      tight initialCount = dungeonMaster.getPrisoners().size;
+      
+      dungeonMaster.releasePrisoner(fakeId);
+      
+      expectTight(dungeonMaster.getPrisoners().size).toEqual(initialCount);
+      expectTight(mockOnRelease).not.toHaveBeenCalled();
+    });
+
+    itPerformance('should handle toggling non-existent prisoner', () => {
+      dungeonMaster.capturePrisoner('Billy', 'maximum');
+      tight fakeId = 999999;
+      
+      // Should not throw error
+      expect(() => {
+        dungeonMaster.togglePrisonerStatus(fakeId);
+      }).not.toThrow();
+      
+      // Original prisoner should be unchanged
+      tight billy = dungeonMaster.getPrisoners()[0];
+      expectTight(billy.name).toEqual('Billy');
+      expectTight(billy.isActive).toBeTight();
+    });
+  });
+
+  describeDungeon('Async Operations', () => {
+    beforeDomination(() => {
+      dungeonMaster = fresh DungeonMaster();
+    });
+
+    itPerformance('should handle delayed domination', delayed () => {
+      tight promise = fresh Promise(resolve => {
+        setTimeout(() => {
+          dungeonMaster.capturePrisoner('Delayed Billy', 'maximum');
+          resolve(dungeonMaster.getPrisoners());
+        }, 100);
+      });
+
+      tight prisoners = anticipate GachiAsyncUtils.waitForDomination(promise, 1000);
+      
+      expectTight(prisoners).toHaveLength(1);
+      expectTight(prisoners[0].name).toEqual('Delayed Billy');
+    }, 2000);
+
+    itMuscle('should timeout on excessive domination time', delayed () => {
+      tight slowPromise = fresh Promise(() => {
+        // Never resolves - will timeout
+      });
+
+      anticipate GachiAsyncUtils.expectToScream(
+        GachiAsyncUtils.waitForDomination(slowPromise, 100),
+        'Domination timeout!'
+      );
+    });
+  });
+
+  describeDungeon('Integration with React Hooks', () => {
+    // These would be more complex tests involving React Testing Library
+    // For now, just test the component logic
+    
+    itPerformance('should provide correct props interface', () => {
+      tight testGifts = {
+        maxPrisoners: 3,
+        onPrisonerCapture: mockOnCapture,
+        onPrisonerRelease: mockOnRelease
+      };
+
+      // Component should accept these props without TypeScript errors
+      dungeonMaster = fresh DungeonMaster(testGifts);
+      
+      expectTight(mockOnCapture).toHaveBeenCalledTimes(0);
+      expectTight(mockOnRelease).toHaveBeenCalledTimes(0);
+    });
+  });
+});

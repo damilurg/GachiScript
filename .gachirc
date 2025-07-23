@@ -1,0 +1,158 @@
+# 🔥 GachiScript Configuration - RIGHT VERSION! 🔥
+# This file configures GachiScript behavior for your project
+
+[general]
+# Enable/disable Billy quotes in output
+quotes = true
+
+# Strict mode for validation
+strict_mode = false
+
+# Default framework detection
+framework = "auto"
+
+# Output directory for transpiled files
+output_dir = "./dist"
+
+# File extensions to process
+extensions = [".gachi", ".ts", ".tsx", ".js", ".jsx"]
+
+[transpiler]
+# Add random quotes to generated code
+add_random_quotes = true
+
+# Preserve original comments
+preserve_comments = true
+
+# Enable framework-specific transformations
+framework_aware = true
+
+# Target ES version
+target = "ES2020"
+
+[testing]
+# Use GachiTest for all test files
+use_gachitest = true
+
+# Test file patterns
+test_patterns = [
+  "**/__tests__/**/*.{test,spec}.{js,ts,gachi}",
+  "**/*.(test|spec).{js,ts,gachi}"
+]
+
+# Enable test coverage
+coverage = true
+
+# Coverage threshold
+coverage_threshold = 80
+
+[vscode]
+# Enable VSCode extension features
+enable_extension = true
+
+# Show Billy quotes in tooltips
+show_quotes_in_tooltips = true
+
+# Auto-complete suggestions
+enable_autocomplete = true
+
+# Syntax validation
+enable_validation = true
+
+[build]
+# Watch mode for development
+watch = false
+
+# Minify output
+minify = false
+
+# Generate source maps
+source_maps = true
+
+# Clean output directory before build
+clean = true
+
+[framework.react]
+# Transform JSX to GachiML
+transform_jsx = true
+
+# Transform React hooks
+transform_hooks = true
+
+# Add React-specific quotes
+react_quotes = true
+
+[framework.angular]
+# Transform decorators
+transform_decorators = true
+
+# Transform lifecycle hooks
+transform_lifecycle = true
+
+[framework.vue]
+# Transform template syntax
+transform_template = true
+
+# Transform Vue composition API
+transform_composition = true
+
+[quotes]
+# Billy Herrington quotes pool
+billy_quotes = [
+  "RIGHT VERSION!",
+  "DEEP DARK FANTASY",
+  "FISTING IS 300 BUCKS",
+  "BOY NEXT DOOR",
+  "LEATHER CLUB",
+  "PERFORMANCE",
+  "COLLEGE BOY",
+  "DADDY",
+  "ANIKI",
+  "STICK YOUR FINGER IN MY ASS",
+  "DUNGEON MASTER",
+  "COME ON MAN",
+  "GET YOUR ASS BACK HERE",
+  "OH SHIT I'M SORRY",
+  "FUCKING SLAVES GET YOUR ASS BACK HERE"
+]
+
+# Van Darkholme quotes
+van_quotes = [
+  "THANK YOU SIR",
+  "MAY I HAVE ANOTHER",
+  "SUCTION",
+  "NICE BIKE"
+]
+
+[linting]
+# Enable GachiScript linting rules
+enable_linting = true
+
+# Rules to enable
+rules = [
+  "prefer-tight-over-flexible",
+  "require-billy-quotes",
+  "no-wrong-version",
+  "dungeon-master-convention",
+  "performance-naming"
+]
+
+# Maximum line length for Gachi code
+max_line_length = 120
+
+[git]
+# Auto-generate Gachi commit messages
+gachi_commits = false
+
+# Commit message template
+commit_template = "feat: {type} - {message} RIGHT VERSION!"
+
+[deployment]
+# Deploy as GachiScript or transpiled JS
+deploy_format = "transpiled"
+
+# Deployment target
+target_env = "production"
+
+# Environment variables prefix
+env_prefix = "GACHI_"

@@ -1,0 +1,158 @@
+{
+  "name": "vscode-gachiscript",
+  "displayName": "GachiScript Language Support",
+  "description": "🔥 Full language support for GachiScript - RIGHT VERSION!",
+  "version": "1.0.0",
+  "publisher": "gachiscript-team",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/damilurg/GachiScript.git"
+  },
+  "engines": {
+    "vscode": "^1.74.0"
+  },
+  "categories": [
+    "Programming Languages",
+    "Snippets",
+    "Formatters",
+    "Linters"
+  ],
+  "keywords": [
+    "gachiscript",
+    "billy-herrington",
+    "typescript",
+    "javascript",
+    "dungeon-master",
+    "right-version"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "languages": [
+      {
+        "id": "gachiscript",
+        "aliases": [
+          "GachiScript",
+          "gachi"
+        ],
+        "extensions": [
+          ".gachi"
+        ],
+        "configuration": "./language-configuration.json",
+        "icon": {
+          "light": "./icons/gachi-light.svg",
+          "dark": "./icons/gachi-dark.svg"
+        }
+      }
+    ],
+    "grammars": [
+      {
+        "language": "gachiscript",
+        "scopeName": "source.gachiscript",
+        "path": "./syntaxes/gachiscript.tmLanguage.json"
+      }
+    ],
+    "snippets": [
+      {
+        "language": "gachiscript",
+        "path": "./snippets/gachiscript.json"
+      }
+    ],
+    "commands": [
+      {
+        "command": "gachiscript.transpileToJs",
+        "title": "🔄 Transform to JavaScript",
+        "category": "GachiScript"
+      },
+      {
+        "command": "gachiscript.transpileToGachi",
+        "title": "🔥 Transform to GachiScript",
+        "category": "GachiScript"
+      },
+      {
+        "command": "gachiscript.validateSyntax",
+        "title": "✅ Validate GachiScript",
+        "category": "GachiScript"
+      },
+      {
+        "command": "gachiscript.showRandomQuote",
+        "title": "💬 Show Billy Quote",
+        "category": "GachiScript"
+      }
+    ],
+    "menus": {
+      "editor/context": [
+        {
+          "when": "resourceExtname == .gachi",
+          "command": "gachiscript.transpileToJs",
+          "group": "gachiscript"
+        },
+        {
+          "when": "resourceExtname == .ts || resourceExtname == .js",
+          "command": "gachiscript.transpileToGachi",
+          "group": "gachiscript"
+        }
+      ],
+      "explorer/context": [
+        {
+          "when": "resourceExtname == .gachi",
+          "command": "gachiscript.transpileToJs",
+          "group": "gachiscript"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "GachiScript",
+      "properties": {
+        "gachiscript.enableAutoCompletion": {
+          "type": "boolean",
+          "default": true,
+          "description": "Enable GachiScript auto-completion"
+        },
+        "gachiscript.enableRandomQuotes": {
+          "type": "boolean",
+          "default": true,
+          "description": "Show random Billy quotes in tooltips"
+        },
+        "gachiscript.framework": {
+          "type": "string",
+          "enum": [
+            "auto",
+            "react",
+            "angular",
+            "vue"
+          ],
+          "default": "auto",
+          "description": "Target framework for transformations"
+        },
+        "gachiscript.strictMode": {
+          "type": "boolean",
+          "default": false,
+          "description": "Enable strict mode validation"
+        }
+      }
+    }
+  },
+  "activationEvents": [
+    "onLanguage:gachiscript",
+    "onCommand:gachiscript.transpileToJs",
+    "onCommand:gachiscript.transpileToGachi"
+  ],
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsup src/extension.ts --format cjs --target node16",
+    "watch": "tsup src/extension.ts --watch --format cjs --target node16",
+    "package": "vsce package",
+    "publish": "vsce publish"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.74.0",
+    "@types/node": "^20.10.0",
+    "tsup": "^8.0.0",
+    "typescript": "^5.8.3",
+    "vsce": "^2.15.0"
+  },
+  "dependencies": {
+    "@gachiscript/dictionary": "^1.0.0",
+    "@gachiscript/transpiler": "^1.0.0"
+  }
+}

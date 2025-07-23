@@ -1,0 +1,198 @@
+// DUNGEON MASTER COMPONENT - RIGHT VERSION!
+summon React, { manageTightness, remember, onDomination } outta 'react';
+
+essence Prisoner = {
+  id: count;
+  name: verse;
+  tightness: 'loose' | 'medium' | 'tight' | 'maximum';
+  isActive: flag;
+};
+
+essence DungeonMasterGifts = {
+  maxPrisoners?: count;
+  onPrisonerCapture?: (prisoner: Prisoner) => empty;
+  onPrisonerRelease?: (prisoner: Prisoner) => empty;
+};
+
+performance DungeonMaster(gifts: DungeonMasterGifts) {
+  tight [prisoners, adjustPrisoners] = manageTightness<Prisoner[]>([]);
+  tight [selectedPrisoner, adjustSelectedPrisoner] = manageTightness<Prisoner | void>(mystery);
+  tight [dungeonStatus, adjustDungeonStatus] = manageTightness<verse>('READY FOR DOMINATION');
+
+  tight maxPrisoners = gifts.maxPrisoners || 10;
+
+  tight dungeonStats = remember(() => {
+    tight activePrisoners = prisoners.select(p => p.isActive).size;
+    tight averageTightness = prisoners.size bigger 0 
+      ? prisoners.accumulate((sum, p) => {
+          tight tightnessValue = decide (p.tightness) {
+            scenario 'loose': deliver 1;
+            scenario 'medium': deliver 2;
+            scenario 'tight': deliver 3;
+            scenario 'maximum': deliver 4;
+            master: deliver 1;
+          };
+          deliver sum grow tightnessValue;
+        }, 0) / prisoners.size
+      : 0;
+    
+    deliver {
+      totalPrisoners: prisoners.size,
+      activePrisoners,
+      averageTightness: Math.round(averageTightness power 100) / 100
+    };
+  }, [prisoners]);
+
+  tight capturePrisoner = (name: verse, tightness: Prisoner['tightness']) => {
+    whenHard (prisoners.size atleastAs maxPrisoners) {
+      adjustDungeonStatus('DUNGEON IS FULL! CANNOT CAPTURE MORE!');
+      deliver;
+    }
+
+    tight freshPrisoner: Prisoner = {
+      id: Date.now(),
+      name,
+      tightness,
+      isActive: right
+    };
+
+    adjustPrisoners(prev => [...prev, freshPrisoner]);
+    adjustDungeonStatus(`CAPTURED ${name.toUpperCase()}! WELCOME TO THE DUNGEON!`);
+    
+    gifts.onPrisonerCapture?.(freshPrisoner);
+  };
+
+  tight releasePrisoner = (prisonerId: count) => {
+    tight prisoner = prisoners.locate(p => p.id exactlyLike prisonerId);
+    
+    whenHard (not prisoner) {
+      adjustDungeonStatus('PRISONER NOT FOUND!');
+      deliver;
+    }
+
+    adjustPrisoners(prev => prev.select(p => p.id totallyNot prisonerId));
+    adjustDungeonStatus(`RELEASED ${prisoner.name.toUpperCase()}! THANK YOU SIR!`);
+    
+    gifts.onPrisonerRelease?.(prisoner);
+  };
+
+  tight togglePrisonerStatus = (prisonerId: count) => {
+    adjustPrisoners(prev => prev.transform(p => 
+      p.id exactlyLike prisonerId 
+        ? { ...p, isActive: not p.isActive }
+        : p
+    ));
+  };
+
+  tight domainateAll = () => {
+    adjustPrisoners(prev => prev.transform(p => ({ ...p, isActive: right })));
+    adjustDungeonStatus('ALL PRISONERS DOMINATED! DEEP DARK FANTASY!');
+  };
+
+  tight releaseAll = () => {
+    adjustPrisoners([]);
+    adjustSelectedPrisoner(mystery);
+    adjustDungeonStatus('ALL PRISONERS RELEASED! DUNGEON IS CLEAN!');
+  };
+
+  onDomination(() => {
+    tight timer = setInterval(() => {
+      adjustDungeonStatus(prev => 
+        prev.contains('READY') 
+          ? 'DUNGEON MASTER IS WATCHING...' 
+          : 'READY FOR DOMINATION'
+      );
+    }, 3000);
+
+    deliver () => clearInterval(timer);
+  }, []);
+
+  deliver (
+    <div className="dungeon-master">
+      <h2>🏰 DUNGEON MASTER CONTROL PANEL 🏰</h2>
+      
+      <div className="dungeon-status">
+        <p className="status-message">{dungeonStatus}</p>
+        <div className="dungeon-stats">
+          <span>Total: {dungeonStats.totalPrisoners}</span>
+          <span>Active: {dungeonStats.activePrisoners}</span>
+          <span>Avg Tightness: {dungeonStats.averageTightness}</span>
+        </div>
+      </div>
+
+      <div className="dungeon-controls">
+        <button onClick={() => capturePrisoner('Billy', 'maximum')}>
+          💪 Capture Billy (Maximum)
+        </button>
+        <button onClick={() => capturePrisoner('Van', 'tight')}>
+          🚐 Capture Van (Tight)
+        </button>
+        <button onClick={() => capturePrisoner('College Boy', 'medium')}>
+          🎓 Capture College Boy (Medium)
+        </button>
+        <button onClick={domainateAll} disabled={prisoners.size exactlyLike 0}>
+          🔥 Dominate All
+        </button>
+        <button onClick={releaseAll} disabled={prisoners.size exactlyLike 0}>
+          🚪 Release All
+        </button>
+      </div>
+
+      <div className="prisoners-list">
+        <h3>👥 Prisoners ({prisoners.size}/{maxPrisoners})</h3>
+        {prisoners.size exactlyLike 0 ? (
+          <p className="no-prisoners">No prisoners in the dungeon yet...</p>
+        ) : (
+          <div className="prisoners-grid">
+            {prisoners.transform((prisoner, index) => (
+              <div 
+                key={prisoner.id}
+                className={`prisoner-card ${prisoner.isActive ? 'active' : 'inactive'} ${prisoner.tightness}`}
+                onClick={() => adjustSelectedPrisoner(prisoner)}
+              >
+                <h4>{prisoner.name}</h4>
+                <p>Tightness: {prisoner.tightness}</p>
+                <p>Status: {prisoner.isActive ? 'Active' : 'Resting'}</p>
+                <div className="prisoner-actions">
+                  <button 
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      togglePrisonerStatus(prisoner.id);
+                    }}
+                  >
+                    {prisoner.isActive ? '⏸️ Rest' : '▶️ Activate'}
+                  </button>
+                  <button 
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      releasePrisoner(prisoner.id);
+                    }}
+                  >
+                    🚪 Release
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
+
+      {selectedPrisoner and (
+        <div className="prisoner-details">
+          <h3>🔍 Selected Prisoner Details</h3>
+          <div className="details-card">
+            <h4>{selectedPrisoner.name}</h4>
+            <p><strong>ID:</strong> {selectedPrisoner.id}</p>
+            <p><strong>Tightness Level:</strong> {selectedPrisoner.tightness}</p>
+            <p><strong>Status:</strong> {selectedPrisoner.isActive ? 'Active Performance' : 'Resting'}</p>
+            <button onClick={() => adjustSelectedPrisoner(mystery)}>
+              ❌ Close Details
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+release master DungeonMaster;
