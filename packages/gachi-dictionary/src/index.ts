@@ -1,4 +1,4 @@
-import gachiDict from './gachi-dictionary.json';
+import gachiDict from './gachi-dictionary.json' assert { type: 'json' };
 
 export interface GachiDictionary {
   keywords: Record<string, string>;
@@ -102,7 +102,7 @@ export class GachiTransformer {
   /**
    * Get all available keywords for a category
    */
-  getKeywordsByCategory(category: keyof GachiDictionary): Record<string, string> | string[] {
+  getKeywordsByCategory(category: keyof GachiDictionary): any {
     return this.dictionary[category];
   }
 

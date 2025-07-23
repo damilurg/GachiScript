@@ -1,0 +1,51 @@
+
+> @gachiscript/transpiler@1.0.0 build
+> tsup src/index.ts src/cli.ts --dts --format esm
+
+[1G[0K[34mCLI[39m Building entry: src/cli.ts, src/index.ts
+[34mCLI[39m Using tsconfig: ../../tsconfig.json
+[34mCLI[39m tsup v8.5.0
+[34mCLI[39m Target: esnext
+[34mESM[39m Build start
+[32mESM[39m [1mdist/cli.js            [22m[32m7.87 KB[39m
+[32mESM[39m [1mdist/index.js          [22m[32m125.00 B[39m
+[32mESM[39m [1mdist/chunk-WKK3FWKH.js [22m[32m9.20 KB[39m
+[32mESM[39m ⚡️ Build success in 17ms
+DTS Build start
+src/index.ts(67,9): error TS2322: Type 'string[] | undefined' is not assignable to type 'PluginConfig[] | undefined'.
+  Type 'string[]' is not assignable to type 'PluginConfig[]'.
+    Type 'string' is not assignable to type 'PluginConfig'.
+src/index.ts(123,9): error TS2322: Type 'string[] | undefined' is not assignable to type 'PluginConfig[] | undefined'.
+  Type 'string[]' is not assignable to type 'PluginConfig[]'.
+    Type 'string' is not assignable to type 'PluginConfig'.
+src/index.ts(163,18): error TS2339: Property 'shouldTransformIdentifier' does not exist on type 'Node'.
+  Property 'shouldTransformIdentifier' does not exist on type 'File'.
+src/index.ts(183,16): error TS2339: Property 'addRandomComment' does not exist on type 'Node'.
+  Property 'addRandomComment' does not exist on type 'File'.
+src/index.ts(190,16): error TS2339: Property 'addRandomComment' does not exist on type 'Node'.
+  Property 'addRandomComment' does not exist on type 'File'.
+src/index.ts(198,16): error TS2339: Property 'transformReactImports' does not exist on type 'Node'.
+  Property 'transformReactImports' does not exist on type 'File'.
+src/index.ts(205,16): error TS2339: Property 'transformJSXElement' does not exist on type 'Node'.
+  Property 'transformJSXElement' does not exist on type 'File'.
+src/index.ts(226,18): error TS2339: Property 'addComment' does not exist on type 'Node'.
+  Property 'addComment' does not exist on type 'File'.
+src/index.ts(232,7): error TS2353: Object literal may only specify known properties, and 'Comment' does not exist in type 'TraverseOptions<Node>'.
+src/index.ts(232,15): error TS7006: Parameter 'path' implicitly has an 'any' type.
+src/index.ts(234,16): error TS2339: Property 'transformComment' does not exist on type '{ scope?: Scope | undefined; noScope?: boolean | undefined; denylist?: NodeType[] | undefined; blacklist?: NodeType[] | undefined; shouldSkip?: ((node: NodePath<Node>) => boolean) | undefined; } & ... 4 more ... & { ...; }'.
+
+[31mError: error occurred in dts build
+    at Worker.<anonymous> (/workspace/node_modules/tsup/dist/index.js:1545:26)
+    at Worker.emit (node:events:518:28)
+    at MessagePort.<anonymous> (node:internal/worker:268:53)
+    at [nodejs.internal.kHybridDispatch] (node:internal/event_target:827:20)
+    at MessagePort.<anonymous> (node:internal/per_context/messageport:23:28)[39m
+DTS Build error
+[1G[0K⠙[1G[0K[1mnpm[22m [31merror[39m Lifecycle script `build` failed with error:
+[1G[0K⠙[1G[0K[1mnpm[22m [31merror[39m [94mcode[39m [33m1[39m
+[1G[0K⠙[1G[0K[1mnpm[22m [31merror[39m [94mpath[39m /workspace/packages/gachi-transpiler
+[1G[0K⠙[1G[0K[1mnpm[22m [31merror[39m [94mworkspace[39m @gachiscript/transpiler@1.0.0
+[1G[0K⠙[1G[0K[1mnpm[22m [31merror[39m [94mlocation[39m /workspace/packages/gachi-transpiler
+[1G[0K⠙[1G[0K[1mnpm[22m [31merror[39m command failed
+[1G[0K⠙[1G[0K[1mnpm[22m [31merror[39m [94mcommand[39m sh -c tsup src/index.ts src/cli.ts --dts --format esm
+[1G[0K⠙[1G[0K

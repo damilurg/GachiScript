@@ -36,10 +36,10 @@ program
   .option('--gachi-reporter', 'Use Gachi-themed test reporter')
   .option('--quotes', 'Add random Billy quotes to output')
   .option('--transpile', 'Auto-transpile .gachi files before testing')
-  .action(async (pattern, options) => {
+  .action(async (pattern: string, options: any) => {
     try {
       await runGachiTests(pattern, options);
-    } catch (error) {
+    } catch (error: any) {
       console.error(chalk.red('💀 Tests failed:'), error);
       process.exit(1);
     }
@@ -52,10 +52,10 @@ program
   .argument('<name>', 'Test file name')
   .option('-t, --template <template>', 'Test template (basic, dungeon, performance)', 'basic')
   .option('-d, --directory <dir>', 'Output directory', './tests')
-  .action(async (name, options) => {
+  .action(async (name: string, options: any) => {
     try {
       await createTestFile(name, options);
-    } catch (error) {
+    } catch (error: any) {
       console.error(chalk.red('💀 Failed to create test:'), error);
       process.exit(1);
     }
@@ -66,10 +66,10 @@ program
   .command('init')
   .description('Initialize GachiTest in your project')
   .option('--force', 'Overwrite existing configuration')
-  .action(async (options) => {
+  .action(async (options: any) => {
     try {
       await initializeGachiTest(options);
-    } catch (error) {
+    } catch (error: any) {
       console.error(chalk.red('💀 Initialization failed:'), error);
       process.exit(1);
     }
@@ -138,7 +138,7 @@ async function runGachiTests(pattern: string, options: any): Promise<void> {
       console.log(chalk.red('\n❌ WRONG VERSION! Some tests failed!'));
       process.exit(1);
     }
-  } catch (error) {
+  } catch (error: any) {
     console.error(chalk.red('💀 Test execution failed:'), error);
     process.exit(1);
   }
@@ -388,7 +388,7 @@ afterAll(() => {
     
     await fs.writeFile(packageJsonPath, JSON.stringify(packageJson, null, 2), 'utf-8');
     console.log(chalk.green('✅ Updated package.json scripts'));
-  } catch (error) {
+  } catch (error: any) {
     console.log(chalk.yellow('⚠️ Could not update package.json automatically'));
   }
   

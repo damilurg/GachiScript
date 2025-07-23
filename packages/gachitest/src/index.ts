@@ -379,9 +379,4 @@ if (typeof global !== 'undefined') {
   (global as any).expectTight = expectTight;
 }
 
-// Export everything for explicit imports
-export {
-  GachiReporter,
-  GachiAsyncUtils,
-  GachiMockFactory
-};
+// Classes are already exported above, no need to re-export
